@@ -4,15 +4,15 @@ import {
   View,
   Text,
   TextInput,
-  VirtualizedList,
   TouchableOpacity,
   ImageBackground,
 } from "react-native";
 import styles from "./LoginScreen.styles";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const LoginScreenUI = () => {
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.mainContainer}>
         <ImageBackground
           source={require("../../assets/quote-logo.png")}
@@ -45,7 +45,7 @@ const LoginScreenUI = () => {
           </View>
         </View>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
