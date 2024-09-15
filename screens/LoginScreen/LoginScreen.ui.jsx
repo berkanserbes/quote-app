@@ -10,7 +10,7 @@ import {
 import styles from "./LoginScreen.styles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-const LoginScreenUI = () => {
+const LoginScreenUI = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.mainContainer}>
@@ -41,7 +41,12 @@ const LoginScreenUI = () => {
           </View>
           <View style={styles.signUpNavContainer}>
             <Text>Don't have an account?</Text>
-            <Text style={styles.signUpText}>Sign up</Text>
+            <Text
+              style={styles.signUpText}
+              onPress={() => navigation.navigate("Register")}
+            >
+              Sign up
+            </Text>
           </View>
         </View>
       </View>
