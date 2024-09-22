@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  SafeAreaView,
   View,
   Text,
   TextInput,
@@ -8,9 +7,8 @@ import {
   ImageBackground,
 } from "react-native";
 import styles from "./LoginScreen.styles";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-const LoginScreenUI = ({ navigation }) => {
+const LoginScreenUI = ({ navigation, handleLoginButton }) => {
   return (
     <View style={styles.container}>
       <View style={styles.mainContainer}>
@@ -34,7 +32,10 @@ const LoginScreenUI = ({ navigation }) => {
               <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
             </View>
             <View style={styles.authButtonContainer}>
-              <TouchableOpacity style={styles.authButton}>
+              <TouchableOpacity
+                style={styles.authButton}
+                onPress={handleLoginButton}
+              >
                 <Text style={styles.authButtonText}>Sign in</Text>
               </TouchableOpacity>
             </View>

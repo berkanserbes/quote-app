@@ -5,6 +5,15 @@ import { useNavigation } from "@react-navigation/native";
 const LoginScreenContainer = () => {
   const navigation = useNavigation();
 
-  return <LoginScreenUI navigation={navigation} />;
+  const handleLoginButton = () => {
+    navigation.replace("Main");
+  };
+
+  return (
+    <LoginScreenUI
+      navigation={navigation}
+      handleLoginButton={handleLoginButton}
+    />
+  );
 };
 export default LoginScreenContainer;
