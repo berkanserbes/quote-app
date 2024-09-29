@@ -3,13 +3,15 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StatusBar } from "react-native";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { store } from "./redux/store";
+import { Provider } from "react-redux";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import HomeScreen from "./screens/HomeScreen";
 import FavoriteScreen from "./screens/FavoritesScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import SettingsScreen from "./screens/SettingsScreen";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 const Stack = createNativeStackNavigator();
@@ -93,33 +95,35 @@ const withSafeArea = (Component, edges) => {
 
 export default function App() {
   return (
-    <SafeAreaProvider>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login">
-          {/* Login ve Register ekranları */}
-          <Stack.Screen
-            name="Login"
-            component={withSafeArea(LoginScreen, ["right", "left", "bottom"])}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Register"
-            component={withSafeArea(RegisterScreen, [
-              "right",
-              "left",
-              "bottom",
-            ])}
-            options={{ headerShown: false }}
-          />
+    <Provider store={store}>
+      <SafeAreaProvider>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="Login">
+            {/* Login ve Register ekranları */}
+            <Stack.Screen
+              name="Login"
+              component={withSafeArea(LoginScreen, ["right", "left", "bottom"])}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Register"
+              component={withSafeArea(RegisterScreen, [
+                "right",
+                "left",
+                "bottom",
+              ])}
+              options={{ headerShown: false }}
+            />
 
-          {/* Main ekranı ve Tab navigasyonu */}
-          <Stack.Screen
-            name="Main"
-            component={withSafeArea(MainTabScreen, ["right", "left", "top"])}
-            options={{ headerShown: false }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </SafeAreaProvider>
+            {/* Main ekranı ve Tab navigasyonu */}
+            <Stack.Screen
+              name="Main"
+              component={withSafeArea(MainTabScreen, ["right", "left", "top"])}
+              options={{ headerShown: false }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </SafeAreaProvider>
+    </Provider>
   );
 }
