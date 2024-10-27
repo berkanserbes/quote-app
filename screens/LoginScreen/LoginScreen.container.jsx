@@ -7,6 +7,7 @@ import {
   validatePassword,
 } from "../../utils/validations/authValidation";
 import Toast from "react-native-toast-message";
+import { getToken, saveToken } from "../../utils/helpers/tokenHelper";
 
 const LoginScreenContainer = () => {
   const navigation = useNavigation();
@@ -41,8 +42,10 @@ const LoginScreenContainer = () => {
           },
           position: "bottom",
         });
+        return;
       }
 
+      await saveToken(result);
       navigation.replace("Main");
     } catch (error) {
       console.log("catch: ", error);
