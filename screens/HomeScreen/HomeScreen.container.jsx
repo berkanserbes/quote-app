@@ -1,5 +1,5 @@
 import HomeScreenIU from "./HomeScreen.ui";
-import { useGetCategoriesQuery } from "../../redux/services/category";
+import { useGetCategoriesQuery } from "../../redux/services/category.service";
 import { Text, View } from "react-native";
 import { useState, useEffect } from "react";
 
