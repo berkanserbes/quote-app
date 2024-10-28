@@ -7,7 +7,10 @@ import {
   validatePassword,
 } from "../../utils/validations/authValidation";
 import Toast from "react-native-toast-message";
-import { getToken, saveToken } from "../../utils/helpers/tokenHelper";
+import {
+  getStorageItem,
+  saveStorageItem,
+} from "../../utils/helpers/tokenHelper";
 
 const LoginScreenContainer = () => {
   const navigation = useNavigation();
@@ -45,7 +48,9 @@ const LoginScreenContainer = () => {
         return;
       }
 
-      await saveToken(result);
+      await saveStorageItem("token", result);
+      await saveStorageItem("userEmail", formData.email);
+
       navigation.replace("Main");
     } catch (error) {
       console.log("catch: ", error);
